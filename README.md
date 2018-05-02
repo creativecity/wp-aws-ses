@@ -1,4 +1,4 @@
-# Amazon SES DKIM Mailer
+# Amazon SES DKIM Mailer for Wordpress
 
 This is a clone of the [original Wordpress plugin](https://wordpress.org/plugins/amazon-ses-and-dkim-mailer/) with fixes.
 

@@ -6,8 +6,8 @@
  *
  * Usage: A mail backed for phpmailer using AmazonSES.
  *
- * Description: 
- *    This script is the container of the class AmazonSES which 
+ * Description:
+ *    This script is the container of the class AmazonSES which
  *    is intended to be used with "phpmailer for php5" as a mail
  *    backend that sends mails using Amazon Simple Mail Service.
  *
@@ -16,7 +16,7 @@
  *    "AWSSecretKey" respectively, which are provided by Amazon.
  *
  *    The publicly usable function is the 'send_mail'. Please consult
- *    it's source for usage documentation. Another function 
+ *    it's source for usage documentation. Another function
  *    'request_verification' might also be interesting to anyone trying
  *    to verify email addresses with amazonses.
  *
@@ -48,12 +48,12 @@ class AmazonSES
         $date_value = date(DATE_RFC2822);
         $headers[] = "Date: {$date_value}";
 
-        $signature = base64_encode(hash_hmac("sha1", 
+        $signature = base64_encode(hash_hmac("sha1",
                                              $date_value,
                                              $this->aws_secret_key,
                                              TRUE));
 
-        $headers[] = 
+        $headers[] =
             "X-Amzn-Authorization: AWS3-HTTPS "
             ."AWSAccessKeyId={$this->aws_access_key_id},"
             ."Algorithm=HmacSHA1,Signature={$signature}";
