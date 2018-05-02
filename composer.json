@@ -1,10 +1,11 @@
 {
-	"name": "creativecity/wp-aws-ses",
-	"description": "AWS SES mailing in WordPress, including support for sending e-mail via SSL/TLS (such as Gmail)",
-	"type": "wordpress-plugin",
-	"license": "MIT",
-	"support": {
-		"issues": "https://github.com/creativecity/wp-aws-ses/issues",
-		"source": "https://github.com/creativecity/wp-aws-ses/"
-	}
+  "name": "creativecity/wp-aws-ses",
+  "description":
+    "AWS SES mailing in WordPress, including support for sending e-mail via SSL/TLS (such as Gmail)",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/creativecity/wp-aws-ses/issues",
+    "source": "https://github.com/creativecity/wp-aws-ses/"
+  }
 }

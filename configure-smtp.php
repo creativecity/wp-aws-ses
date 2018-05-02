@@ -89,10 +89,10 @@ class c2c_ConfigureAES_DKIM_SMTP extends C2C_Plugin_023 {
 			'use_aws' => array( 'input' => 'checkbox', 'default' => false,
 				'label' => __( 'Send e-mail via Amazon SES?', $this->textdomain ),
 				'help' => __( 'Clicking this will override many of the settings defined below. You will need to input your AWS details password below.', $this->textdomain )),
-			'AWSAccessKeyID' => array( 'input' => 'text', 
+			'AWSAccessKeyID' => array( 'input' => 'text',
 				'label' => __( 'Amazon AWS Access Key', $this->textdomain ),
 				'help' => __( 'Set your Amazon AWS Access Key.', $this->textdomain ) ),
-			'AWSSecretKey' => array( 'input' => 'text', 
+			'AWSSecretKey' => array( 'input' => 'text',
 				'label' => __( 'Amazon AWS Secret Key', $this->textdomain ),
 				'help' => __( 'Set your Amazon AWS Secret Key.', $this->textdomain ) ),
 			'from_email' => array( 'input' => 'text', 'default' => get_bloginfo('admin_email'),
@@ -100,27 +100,27 @@ class c2c_ConfigureAES_DKIM_SMTP extends C2C_Plugin_023 {
 				'help' => __( 'Sets the From: e-mail address for all outgoing messages. Leave blank to use the WordPress default. This value will be used even if you don\'t enable Amazon AES or SMTP.<br />NOTE: For Amazon SES, the From: e-mail address needs to have been validated.<br />For SMTP, this may not take effect depending on your mail server and settings, especially if using SMTPAuth (such as for GMail).', $this->textdomain ) ),
 			'from_name'	=> array( 'input' => 'text', 'default' => get_bloginfo('name'),
 				'label' => __( 'Sender name', $this->textdomain ),
-				'help' => __( 'Sets the From name for all outgoing messages. Leave blank to use the WordPress default. This value will be used even if you don\'t enable Amazon SES or SMTP.', $this->textdomain ) ),	
+				'help' => __( 'Sets the From name for all outgoing messages. Leave blank to use the WordPress default. This value will be used even if you don\'t enable Amazon SES or SMTP.', $this->textdomain ) ),
 			'use_dkim' => array( 'input' => 'checkbox', 'default' => false,
 				'label' => __( 'Use DKIM validation?', $this->textdomain ),
 				'help' => __( 'Clicking this requires you to enter your DKIM details below. Also you will need to set up your DNS DKIM record.', $this->textdomain )),
-			'dkim_domain' => array( 'input' => 'text', 
+			'dkim_domain' => array( 'input' => 'text',
 				'label' => __( 'DKIM domain', $this->textdomain ),  'default' => $userDomain[1],
 				'help' => __( 'Set the DKIM domain to send from.', $this->textdomain ) ),
-			'dkim_private' => array( 'input' => 'text', 
+			'dkim_private' => array( 'input' => 'text',
 				'label' => __( 'Path to the DKIM private key', $this->textdomain ),  'default' => '.htkeyprivate',
 				'help' => __( 'Set the path relative to the website root directory (exclude leading forward slash).', $this->textdomain ) ),
-			'dkim_selector' => array( 'input' => 'text', 
+			'dkim_selector' => array( 'input' => 'text',
 				'label' => __( 'DKIM selector', $this->textdomain ),  'default' => 'ses',
 				'help' => __( 'Set the DKIM selector for this key.', $this->textdomain ) ),
 			'dkim_passphrase' => array( 'input' => 'text',
 				'label' => __( 'DKIM key passphrase', $this->textdomain ),
 				'help' => __( 'Set the passphrase for the DKIM private key.', $this->textdomain ) ),
-				
+
 			'use_smtp' => array( 'input' => 'checkbox', 'default' => false,
 				'label' => __( 'Send e-mail via SMTP?', $this->textdomain ),
-				'help' => __( 'Note that if Amazon SES is selected above, SMTP settings will be ignored', $this->textdomain )),					
-				
+				'help' => __( 'Note that if Amazon SES is selected above, SMTP settings will be ignored', $this->textdomain )),
+
 			'use_gmail' => array( 'input' => 'checkbox', 'default' => false,
 				'label' => __( 'Send e-mail via GMail?', $this->textdomain ),
 				'help' => __( 'Clicking this will override many of the settings defined below. You will need to input your GMail username and password below.<br />If Amazon SES is selected above then Gmail Settings will be ignored', $this->textdomain ),
@@ -151,7 +151,7 @@ class c2c_ConfigureAES_DKIM_SMTP extends C2C_Plugin_023 {
 				'label' => __( 'Enable SMTP debugging?', $this->textdomain ),
 				'help' => __( 'Only check this if you are experiencing problems and would like more error reporting to occur. <em>Uncheck this once you have finished debugging.</em>', $this->textdomain ) ),
 			'hr' => array()
-			
+
 		);
 	}
 
@@ -173,11 +173,11 @@ class c2c_ConfigureAES_DKIM_SMTP extends C2C_Plugin_023 {
 		add_action( $this->get_hook( 'after_settings_form' ),  array( &$this, 'send_test_form' ) );
 		add_filter( $this->get_hook( 'before_update_option' ), array( &$this, 'maybe_gmail_override' ) );
 	}
-	
-	
+
+
 
 	public function anatta_swap_php_mailer($mail_content) {
-	
+
 	global $phpmailer;
 
 	// Use our PHP mailer before wordpress gets a chance to set it's own
@@ -185,14 +185,14 @@ class c2c_ConfigureAES_DKIM_SMTP extends C2C_Plugin_023 {
 			require_once 'php-mailer/class.phpmailer.php';
 			require_once 'php-mailer/class.smtp.php';
 			$phpmailer = new PHPMailer( true );
-		}	
-			
+		}
+
 		return($mail_content);
 
 	}
 
 
-		
+
 
 	/**
 	 * Outputs the text above the setting form
@@ -270,8 +270,8 @@ JS;
 			$message .= sprintf( __( 'This message was sent with this time-stamp: %s', $this->textdomain ), $timestamp );
 			$message .= "\n\n";
 			$message .= __( 'Congratulations!  Your blog is properly configured to send e-mail.', $this->textdomain );
-			
-            
+
+
             wp_mail( $email, __( 'Test message from your WordPress blog', $this->textdomain ), $message );
 
 			// Check success
@@ -288,7 +288,7 @@ JS;
 			}
 		}
 	}
-    
+
     public function maybe_check_DKIM() {
 		if ( isset( $_POST[$this->get_form_submit_name( 'check_DKIM' )] ) ) {
 			check_admin_referer( $this->nonce_field );
@@ -301,8 +301,8 @@ JS;
 			$message .= sprintf( __( 'This message was sent with this time-stamp: %s', $this->textdomain ), $timestamp );
 			$message .= "\n\n";
 			$message .= __( 'Congratulations!  Your blog is sending e-mail OK, but check below to see if your DKIM signature passed.', $this->textdomain );
-			
-            
+
+
             wp_mail( $email, __( 'Test message from your WordPress blog', $this->textdomain ), $message );
 
 			// Check success
@@ -354,14 +354,14 @@ JS;
 	 */
 	public function phpmailer_init( $phpmailer ) {
 		$options = $this->get_options();
-		
+
         if ( $options['use_aws'] ) {
         	$phpmailer->IsAmazonSES();
         	$phpmailer->AddAmazonSESKey($options['AWSAccessKeyID'], $options['AWSSecretKey']);
         }
-        
+
 		if (( $options['use_smtp'] || $options['use_gmail'] ) && !$options['use_aws']) {
-        
+
         	// Don't configure for SMTP if no host is provided.
 			if ( empty( $options['host'] ) )
 				return;
@@ -378,16 +378,16 @@ JS;
             if ( $options['debug'] )
 				$phpmailer->SMTPDebug = true;
             }
-            
+
 		 if ( $options['wordwrap'] > 0 )
-			$phpmailer->WordWrap = $options['wordwrap']; 
-         
+			$phpmailer->WordWrap = $options['wordwrap'];
+
          if ( $options['use_dkim'] ) {
         	$phpmailer->DKIM_domain = $options['dkim_domain'];
 			$phpmailer->DKIM_private = ABSPATH . $options['dkim_private'];
 			$phpmailer->DKIM_selector = $options['dkim_selector'];
 			$phpmailer->DKIM_passphrase = $options['dkim_passphrase'];
-        }     
+        }
 	}
 
 	/**
@@ -418,7 +418,7 @@ JS;
 
 public function get_random_string($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $string = "";    
+    $string = "";
     for ($p = 0; $p < $length; $p++) {
         $string .= $characters[mt_rand(0, strlen($characters))];
     }
