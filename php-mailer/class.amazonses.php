@@ -35,7 +35,7 @@
 
 class AmazonSES
 {
-    public $amazonSES_base_url = "https://email.us-east-1.amazonaws.com";
+    public $amazonSES_base_url = "https://email.eu-west-1.amazonaws.com";
     public $debug = FALSE;
 
     public $aws_access_key_id = "";
